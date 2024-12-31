@@ -64,6 +64,13 @@ public class VentaController {
         Long empresaId = (Long) request.getAttribute("empresa id");
         Optional<Venta> existingVenta = ventaService.getVentaById(id, empresaId);
 
+        System.out.println();
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        System.out.println("Venta existente: " + existingVenta.get());
+        System.out.println("Venta a actualizar: " + ventaDetails);
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        System.out.println();
+
         if (existingVenta.isPresent()) {
             Venta ventadb = existingVenta.get();
             ventadb.setCliente(ventaDetails.getCliente());

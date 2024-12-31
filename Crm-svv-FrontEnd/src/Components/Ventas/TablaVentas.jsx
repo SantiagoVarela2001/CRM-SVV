@@ -56,11 +56,14 @@ const TablaVentas = ({ venta, index }) => {
     const token = localStorage.getItem('token');
     
     const ventaActualizada = {
-      producto: updateVenta.producto,
-      cliente: updatedCliente.cliente,
-      fecha: updatedCliente.fecha,
-      estadoEnvio: updatedCliente.pais,
+      //productoVentas: updateVenta.productoVentas,
+      cliente: updateVenta.cliente,
+      linkFactura: updateVenta.linkFactura,
+      fecha: updateVenta.fecha,
+      estadoEnvio: updateVenta.estadoEnvio,
     }
+
+    console.log('ventaActualizada:', ventaActualizada);
 
     try {
       const response = await fetch(`${apiBaseURL}/api/ventas/${selectedVenta.id}`, {

@@ -8,7 +8,8 @@ const AgregarVenta = ({ onClose, ventaPreEdit, saveChanges }) => {
 
     const apiBaseURL = import.meta.env.VITE_API;
 
-    const [clientes, setClientes] = useState([])
+    const [clientes, setClientes] = useState([]);
+    const [esEdit, setEsEdit] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [productosVentas, setProductosVentas] = useState([])
 
@@ -24,12 +25,12 @@ const AgregarVenta = ({ onClose, ventaPreEdit, saveChanges }) => {
     const handleCloseModal = () => setShowModal(false);
 
     const obtenerClienteDelCache = (id) => {
-        const clientes = localStorage.getItem('clientes').split(',');
+        const clientes = JSON.parse(localStorage.getItem('clientes') || '[]');
         return clientes.find((cliente) => cliente.id === id);
-    }
+    };
 
     useEffect(() => {
-        if(ventaPreEdit != undefined){
+        if (ventaPreEdit != undefined) {
             setVentaData({
                 cliente: obtenerClienteDelCache(ventaPreEdit.clienteID),
                 productoVentas: ventaPreEdit.productoVentas,
@@ -37,12 +38,7 @@ const AgregarVenta = ({ onClose, ventaPreEdit, saveChanges }) => {
                 linkFactura: ventaPreEdit.linkFactura,
                 estadoEnvio: ventaPreEdit.estadoEnvio
             });
-
-            console.log("cliente: " + obtenerClienteDelCache(ventaPreEdit.clienteID));
-            console.log("productoVentas: " + ventaPreEdit.productoVentas);
-            console.log("fecha: " + ventaPreEdit.fecha);
-            console.log(localStorage.getItem('clientes').split(','));
-
+            setEsEdit(true);
         }
         fetchClientes();
     }, []);
@@ -50,11 +46,11 @@ const AgregarVenta = ({ onClose, ventaPreEdit, saveChanges }) => {
     const fetchClientes = async () => {
         const token = localStorage.getItem('token');
         try {
-            const response = await fetch(`${apiBaseURL}/api/clientes`,{
+            const response = await fetch(`${apiBaseURL}/api/clientes`, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`,
-                }, 
+                },
             });
             const data = await response.json();
             setClientes(data);
@@ -73,7 +69,7 @@ const AgregarVenta = ({ onClose, ventaPreEdit, saveChanges }) => {
 
     const handleSave = async () => {
         const token = localStorage.getItem('token');
-    
+
         try {
             // Paso 1: Crear la venta
             const ventaResponse = await fetch(`${apiBaseURL}/api/ventas`, {
@@ -89,14 +85,14 @@ const AgregarVenta = ({ onClose, ventaPreEdit, saveChanges }) => {
                     linkFactura: ventaData.linkFactura,
                 }),
             });
-    
+
             if (!ventaResponse.ok) {
                 throw new Error('Error al crear la venta');
             }
-    
+
             const ventaCreada = await ventaResponse.json();
             const ventaId = ventaCreada.id; // Obtener el ID de la venta creada
-    
+
             // Paso 2: Crear los productos relacionados a la venta
             const productosRequests = productosVentas.map((pv) => {
                 const productoConVenta = {
@@ -106,9 +102,9 @@ const AgregarVenta = ({ onClose, ventaPreEdit, saveChanges }) => {
                     descuento: pv.descuento,
                 };
 
-                
+
                 console.log("productoConVenta", productoConVenta);
-    
+
                 return fetch(`${apiBaseURL}/api/productos-ventas`, {
                     method: 'POST',
                     headers: {
@@ -118,18 +114,18 @@ const AgregarVenta = ({ onClose, ventaPreEdit, saveChanges }) => {
                     body: JSON.stringify(productoConVenta),
                 });
             });
-    
+
             const productosResponses = await Promise.all(productosRequests);
-    
+
             // Verificar que todos los productos se crearon correctamente
             const errores = productosResponses.filter((response) => !response.ok);
             if (errores.length > 0) {
                 throw new Error('Error al crear algunos productos de la venta');
             }
 
-            
+
             console.log("Venta creada: ", ventaCreada)
-    
+
             onClose(); // Cerrar modal o notificar éxito
         } catch (error) {
             console.error('Error al procesar la venta:', error);
@@ -217,8 +213,11 @@ const AgregarVenta = ({ onClose, ventaPreEdit, saveChanges }) => {
                 <Button variant="light" className="btn-modal" onClick={onClose}>
                     Cerrar
                 </Button>
-                <Button className="btn-modal-send" onClick={handleSave}>
-                    Enviar
+                <Button
+                    className="btn-modal-send"
+                    onClick={esEdit ? () => saveChanges(ventaData) : handleSave}
+                >
+                    {esEdit ? "Actualizar" : "Guardar"}
                 </Button>
             </Modal.Footer>
 
