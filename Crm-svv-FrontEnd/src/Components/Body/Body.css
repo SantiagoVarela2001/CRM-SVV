@@ -1,0 +1,9 @@
+.nav-var-left{
+    background-color: #000000;
+    
+}
+
+.content {
+    height: 100vh;
+    overflow: auto;
+  }

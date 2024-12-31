@@ -1,0 +1,25 @@
+.contenedor-nav {
+    padding: 0;
+    margin: 0;
+    width: 100%; /* Ocupa todo el ancho del contenedor asignado */
+    height: 100vh; /* Asegura que ocupe toda la altura de la ventana */
+    background-color: #000000;
+}
+
+.crm-titulo {
+    color: #ffffff;
+    margin-top: 37px;
+    margin-bottom: 30px;
+}
+
+.nav-link {
+    color: rgba(255, 255, 255, 0.877) !important;
+}
+
+.nav-link.active {
+    color: #ff5555 !important;
+}
+
+.nav-link:hover {
+    color: #ff5555 !important;
+}

@@ -1,0 +1,40 @@
+.producto-venta {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 15px;
+  background-color: #f9f9f9; /* Color de fondo suave */
+  transition: box-shadow 0.3s ease;
+}
+
+.producto-venta:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra al pasar el mouse */
+}
+
+.producto-info {
+  margin-bottom: 10px;
+}
+
+h3 {
+  margin: 0;
+  color: #333; /* Color de texto del nombre del producto */
+}
+
+.stock-rojo {
+  color: #ff6565; /* Color rojo para el stock */
+  font-weight: bold;
+}
+
+input[type="number"] {
+  text-align: center;
+}
+
+.button-outline-danger {
+  color: #ff6565; /* Color del texto del botón */
+  border-color: #ff6565; /* Color del borde del botón */
+}
+
+.button-outline-danger:hover {
+  background-color: #ff6565; /* Fondo del botón al pasar el mouse */
+  color: white; /* Color del texto del botón al pasar el mouse */
+}

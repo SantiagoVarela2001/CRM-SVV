@@ -1,0 +1,20 @@
+.precio-total-container.minimal {
+    background-color: #fff; /* Fondo blanco limpio */
+    color: #333; /* Texto oscuro neutro */
+    padding: 10px;
+    border-bottom: 2px solid #ddd; /* Solo una línea inferior como detalle */
+  }
+  
+  .precio-total-titulo {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #ff6565; /* Texto gris suave */
+    margin-bottom: 8px;
+  }
+  
+  .precio-total-valor {
+    font-size: 2rem; /* Tamaño moderadamente grande */
+    font-weight: bold;
+    color: #000; /* Texto negro */
+  }
+  

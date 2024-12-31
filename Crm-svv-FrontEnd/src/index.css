@@ -1,0 +1,77 @@
+:root {
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgb(0, 0, 0);
+  background-color: #ffffff;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.color-ladrillo {
+  color: #ff6565;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+
+.btn-ladrillo {
+  background-color: #fff;
+  border: 1px solid #C74B2D;
+  color: #C74B2D;
+  border-radius: 4px;
+  padding: 8px 16px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-ladrillo:hover {
+  background-color: #C74B2D;
+  color: white;
+}
+
+.link-ladrillo {
+  color: #C74B2D;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.link-ladrillo:hover {
+  color: #A03A29;
+}
+
+.btn-modal {
+  background-color: #fff;
+  border: 1px solid #C74B2D;
+  color: #C74B2D;
+  border-radius: 4px;
+  padding: 8px 16px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-modal:hover {
+  background-color: #C74B2D;
+  color: white; 
+}
+
+
+.btn-modal-send {
+  background-color: #C74B2D;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  padding: 8px 16px;
+  transition: background-color 0.3s;
+}
+
+.btn-modal-send:hover {
+  background-color: #A03A29;
+}

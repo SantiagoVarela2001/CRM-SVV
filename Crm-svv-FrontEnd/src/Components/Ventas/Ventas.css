@@ -1,0 +1,44 @@
+.floating-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #ff6565c7;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 55px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 24px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+  }
+
+  .floating-button:hover{
+    background-color: #ff6565;
+  }
+
+  .precio-total-container.minimal {
+    background-color: #fff; /* Fondo blanco limpio */
+    color: #333; /* Texto oscuro neutro */
+    padding: 10px;
+    border-bottom: 2px solid #ddd; /* Solo una línea inferior como detalle */
+  }
+  
+  .precio-total-titulo {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #ff6565; /* Texto gris suave */
+    margin-bottom: 8px;
+  }
+  
+  .precio-total-valor {
+    font-size: 2rem; /* Tamaño moderadamente grande */
+    font-weight: bold;
+    color: #000; /* Texto negro */
+  }
+  
