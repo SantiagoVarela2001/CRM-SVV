@@ -68,19 +68,7 @@ public class ProductoVentaController {
     public ResponseEntity<ProductoVenta> updateProductoVenta(@Valid @PathVariable Long id,
             @RequestBody ProductoVenta productoVentaDetails, HttpServletRequest request) {
                 Long empresaId = (Long) request.getAttribute("empresa id");
-        Optional<ProductoVenta> existingProductoVenta = productoVentaService.getProductoVentaById(id, empresaId);
-
-        if (existingProductoVenta.isPresent()) {
-            ProductoVenta productoVentadb = existingProductoVenta.get();
-            productoVentadb.setProducto(productoVentaDetails.getProducto());
-            productoVentadb.setVenta(productoVentaDetails.getVenta());
-            productoVentadb.setCantidadDelProducto(productoVentaDetails.getCantidadDelProducto());
-            productoVentadb.setDescuento(productoVentaDetails.getDescuento());
-            ProductoVenta updatedProductoVenta = productoVentaService.saveProductoVenta(productoVentadb, productoService);
-            return ResponseEntity.ok(updatedProductoVenta);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+                return productoVentaService.updateProductoVenta(id, productoVentaDetails, empresaId);
     }
 
     @DeleteMapping("/{id}")

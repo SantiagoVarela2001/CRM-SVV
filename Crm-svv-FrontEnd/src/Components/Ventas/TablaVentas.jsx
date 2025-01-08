@@ -54,9 +54,11 @@ const TablaVentas = ({ venta, index }) => {
 
   const saveChanges = async (updateVenta) => {
     const token = localStorage.getItem('token');
+
+    console.log('productos ventas:', updateVenta.productoVentas);
     
     const ventaActualizada = {
-      //productoVentas: updateVenta.productoVentas,
+      productoVentas: updateVenta.productoVentas,
       cliente: updateVenta.cliente,
       linkFactura: updateVenta.linkFactura,
       fecha: updateVenta.fecha,

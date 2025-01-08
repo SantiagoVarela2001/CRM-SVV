@@ -40,7 +40,7 @@ public class Producto {
     @Positive(message = "El precio de venta debe ser mayor a 0.")
     private double precioVenta;
 
-    //@Positive(message = "El stock debe ser mayor a 0.")
+    @Positive(message = "El stock debe ser mayor a 0.")
     private int stock;
 
     @ManyToOne(fetch = FetchType.LAZY)

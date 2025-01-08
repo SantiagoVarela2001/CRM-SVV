@@ -1,5 +1,6 @@
 package com.crm.backend.crm_backend.services;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.crm.backend.crm_backend.dto.ProductoVentaDTO;
@@ -93,6 +94,29 @@ public class ProductoVentaService {
 
     public void deleteProductoVenta(Long id, Long empresaId) {
         productoVentaRepository.deleteById(id, empresaId);
+    }
+
+    public ResponseEntity<ProductoVenta> updateProductoVenta(Long id, ProductoVenta productoVentaDetails, Long empresaId) {
+        Optional<ProductoVenta> existingProductoVenta = productoVentaRepository.findById(id);
+
+        System.out.println();
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        System.out.println("ProductoVenta Details: " + productoVentaDetails);
+        System.out.println("Id: " + id);
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        System.out.println();
+
+        if (existingProductoVenta.isPresent()) {
+            ProductoVenta productoVentadb = existingProductoVenta.get();
+            productoVentadb.setProducto(productoVentaDetails.getProducto());
+            productoVentadb.setVenta(productoVentaDetails.getVenta());
+            productoVentadb.setCantidadDelProducto(productoVentaDetails.getCantidadDelProducto());
+            productoVentadb.setDescuento(productoVentaDetails.getDescuento());
+            ProductoVenta updatedProductoVenta = productoVentaRepository.save(productoVentadb);
+            return ResponseEntity.ok(updatedProductoVenta);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }
 
